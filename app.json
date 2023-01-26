@@ -1,0 +1,44 @@
+{
+  "expo": {
+    "name": "projetYnov",
+    "slug": "projetYnov",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "myapp",
+    "userInterfaceStyle": "automatic",
+    "firebase" : {
+      "apiKey": "AIzaSyA4eAlUJuj0_Cw4orL_3iKS00lz9mwQmSk",
+      "authDomain": "firstproject-e9d15.firebaseapp.com",
+      "databaseURL": "https://firstproject-e9d15-default-rtdb.europe-west1.firebasedatabase.app",
+      "projectId": "firstproject-e9d15",
+      "storageBucket": "firstproject-e9d15.appspot.com",
+      "messagingSenderId": "936586232072",
+      "appId": "1:936586232072:web:99385aae6b2e2783f4ecbd",
+      "measurementId": "G-DGT64MD0VB"
+    },
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/images/favicon.png"
+    }
+  }
+}
