@@ -25,8 +25,7 @@ export const createUser = () => {
         uid,
         displayName: !displayName ? displayName : 'test',
         email: email ? email : '',
-      };
-      console.log(user);   
+      }; 
 
       // Add the new user to the Firestore users collection.
       firebase
@@ -40,4 +39,10 @@ export const createUser = () => {
 
 export const readUser = () => {
 
+  const user = firebase.auth().currentUser;
+  if (user) {
+    return user
+  } else {
+    return 'not logged in'
+  }
 };

@@ -1,10 +1,6 @@
-
-import { StyleSheet } from 'react-native';
-
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 import { RootTabScreenProps } from '../types';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { createUser } from '../config/firebaseconfig';
@@ -12,23 +8,42 @@ import Login from '../components/Login';
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleLogin = async (email: string, password: string) => {
     try {
         const userCredentials = await firebase.auth().signInWithEmailAndPassword(email, password)
-        //console.log('User signed in!', userCredentials.user)
     } catch (e) {
         console.log('Error signing in', e)
     }
   }
+  
+  const handleSubmit = (email: string, password: string) => {
+    handleLogin(email,password);
+    createUser();
+  };
 
-  useEffect(()=>{
-    handleLogin('test@gmail.com','123456');
-  });
-
-  createUser();
 
   return (
+    <>
     <Login />
+    <View style={styles.container}>
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          onChangeText={text => setEmail(text)}
+          value={email} />
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          onChangeText={text => setPassword(text)}
+          value={password}
+          secureTextEntry={true} />
+        <TouchableOpacity style={styles.button} onPress={() => handleSubmit(email, password)}>
+          <Text style={styles.buttonText}>Log in</Text>
+        </TouchableOpacity>
+      </View></>
   );
 }
 
@@ -37,14 +52,25 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#F5FCFF',
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
+  input: {
     width: '80%',
+    height: 40,
+    padding: 10,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
   },
+  button: {
+    width: '80%',
+    height: 40,
+    backgroundColor: 'blue',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
+  },
+  buttonText: {
+    color: 'white',
+  }
 });

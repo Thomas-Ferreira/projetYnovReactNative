@@ -8,6 +8,7 @@ import * as React from 'react';
 WebBrowser.maybeCompleteAuthSession();
 
 export default function Login() {
+    
   const [accessToken, setAccessToken] = React.useState(null);
   const [user, setUser] = React.useState(null);
   const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
@@ -83,7 +84,7 @@ export default function Login() {
             promptAsync();
             }} 
         >
-          <Image source={require("./btn.png")} style={{width: 300, height: 30}}/>
+         <Image source={require("../assets/images/btn.png")} style={{width: 300, height: 30}}/> 
         </TouchableOpacity>
         <Button title='Login with Facebook' onPress={logIn}/>
         </>

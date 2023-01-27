@@ -32,7 +32,6 @@ const Chat: React.FC<Props> = ({messages}) => {
     setData([...data, messageSend]);
     setNewMessage('');
   }
-  
 
   return (
     <View style={styles.container}>
