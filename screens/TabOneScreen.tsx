@@ -22,6 +22,8 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
   const handleSubmit = (email: string, password: string) => {
     handleLogin(email,password);
     createUser();
+    setEmail('');
+    setPassword('');
   };
 
 

@@ -26,7 +26,7 @@ export const createUser = () => {
         displayName: !displayName ? displayName : 'test',
         email: email ? email : '',
       }; 
-
+      console.log(user);
       // Add the new user to the Firestore users collection.
       firebase
         .firestore()
