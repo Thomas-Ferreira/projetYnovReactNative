@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import GeoMap from '../components/GeoMap';
-import { Text, View } from '../components/Themed';
+import { readUser } from '../config/firebaseconfig';
+import { RootTabScreenProps } from '../types';
 
-export default function TabTwoScreen() {
+export default function TabTwoScreen({ navigation }: RootTabScreenProps<'TabTwo'>) {
+  readUser()
   return (
     <GeoMap />
   );

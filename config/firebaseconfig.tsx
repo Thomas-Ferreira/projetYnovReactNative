@@ -43,6 +43,6 @@ export const readUser = () => {
   if (user) {
     return user
   } else {
-    return 'not logged in'
+    return false
   }
 };

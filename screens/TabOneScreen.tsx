@@ -10,10 +10,12 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loggedIn, setLoggedId] = useState(false);
 
   const handleLogin = async (email: string, password: string) => {
     try {
-        const userCredentials = await firebase.auth().signInWithEmailAndPassword(email, password)
+        const userCredentials = await firebase.auth().signInWithEmailAndPassword(email, password);
+        setLoggedId(true);
     } catch (e) {
         console.log('Error signing in', e)
     }
@@ -25,6 +27,12 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
     setEmail('');
     setPassword('');
   };
+
+  useEffect(() => {
+    if (loggedIn) {
+      navigation.navigate("TabTwo");
+    }
+  }, [loggedIn]);
 
 
   return (

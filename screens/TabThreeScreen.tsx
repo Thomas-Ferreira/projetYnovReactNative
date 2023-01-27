@@ -1,10 +1,17 @@
+import { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import Chat from '../components/Chat';
+import { readUser } from '../config/firebaseconfig';
+import { RootTabScreenProps } from '../types';
 
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
+export default function TabThreeScreen({ navigation }: RootTabScreenProps<'TabThree'>) {
 
-export default function TabThreeScreen() {
+  useEffect(() => {
+    if (!readUser()) {
+      navigation.navigate("TabOne");
+    }
+  }, []);
+
   return (
     <Chat
     messages={[
