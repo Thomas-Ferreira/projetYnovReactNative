@@ -1,4 +1,5 @@
-import { initializeApp } from 'firebase/app';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore'
 
 // Initialize Firebase
 export const firebaseConfig = {
@@ -12,4 +13,31 @@ export const firebaseConfig = {
   measurementId: "G-DGT64MD0VB"
 };
 
-//const app = initializeApp(firebaseConfig);
+export const createUser = () => {
+  
+  firebase.auth().onAuthStateChanged(async (user) => {
+    if (user) {
+      // User is signed in.
+      const { uid, displayName, email } = user;
+
+      // Create a new user object.
+      const newUser = {
+        uid,
+        displayName: !displayName ? displayName : 'test',
+        email: email ? email : '',
+      };
+      console.log(user);   
+
+      // Add the new user to the Firestore users collection.
+      firebase
+        .firestore()
+        .collection('users')
+        .doc(uid)
+        .set(newUser);
+    }
+  });
+};
+
+export const readUser = () => {
+
+};

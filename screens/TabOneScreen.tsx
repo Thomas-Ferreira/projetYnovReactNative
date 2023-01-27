@@ -7,28 +7,28 @@ import { RootTabScreenProps } from '../types';
 import { useEffect } from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
+import { createUser } from '../config/firebaseconfig';
+import Login from '../components/Login';
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
 
   const handleLogin = async (email: string, password: string) => {
     try {
         const userCredentials = await firebase.auth().signInWithEmailAndPassword(email, password)
-        console.log('User signed in!', userCredentials.user)
+        //console.log('User signed in!', userCredentials.user)
     } catch (e) {
         console.log('Error signing in', e)
     }
-}
+  }
 
-useEffect(()=>{
-  handleLogin('test@gmail.com','123456');
-});
+  useEffect(()=>{
+    handleLogin('test@gmail.com','123456');
+  });
+
+  createUser();
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
-    </View>
+    <Login />
   );
 }
 
